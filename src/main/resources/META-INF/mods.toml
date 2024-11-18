@@ -33,12 +33,12 @@ mandatory=true
 versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
-#[[dependencies.${mod_id}]]
-#    modId="curios"
-#    mandatory=true
-#    versionRange="${minecraft_version_range}"
-#    ordering="NONE"
-#    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId= "animatedmobsmod"
+    mandatory=true
+    versionRange="[1.0.0,)"
+    ordering="BEFORE"
+    side="BOTH"
 #[[dependencies.${mod_id}]]
 #    modId="geckolib"
 #    mandatory=true

@@ -1,0 +1,15 @@
+{
+ "required": true,
+ "priority": 1000,
+ "minVersion": "0.8",
+ "package": "org.crychicteam.nolimit.mixins",
+ "refmap": "nolimit.refmap.json",
+ "compatibilityLevel": "JAVA_17",
+ "mixins": [
+  "EnderKingEntityMixin"
+ ],
+ "client": [
+ ],
+ "server": [
+ ]
+}

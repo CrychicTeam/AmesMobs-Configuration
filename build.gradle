@@ -47,7 +47,7 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 mixin {
-    add sourceSets.main, "mixins.${config.mod_id}.refmap.json"
+    add sourceSets.main, "${config.mod_id}.refmap.json"
 }
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
@@ -155,6 +155,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        url "https://cursemaven.com"
+    }
+    maven {
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
         content {
@@ -180,6 +183,9 @@ repositories {
         name "KosmX's maven"
         url 'https://maven.kosmx.dev/'
     }
+    maven {
+        url = "https://jitpack.io"
+    }
     flatDir { dirs "libraries/${config.mc_version}/all" }
     flatDir { dirs "libraries/${config.mc_version}/classpathOnly" }
     flatDir { dirs "libraries/${config.mc_version}/runtimeOnly" }
@@ -188,57 +194,61 @@ repositories {
 
 dependencies {
     minecraft "net.neoforged:forge:${config.mc_version}-${config.forge_version}"
-    compileOnly(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${config.mixin_extras_version}"))
+    annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
+//    compileOnly(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${config.mixin_extras_version}"))
 
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${config.registrate_version}")
-    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
+//    implementation fg.deobf("com.tterrag.registrate:Registrate:${config.registrate_version}")
+//    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
 
-    if (hasConfig("jei_version") && !config.jei_version.isEmpty()) {
-        compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-common-api:${config.jei_version}")
-        compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")
-        runtimeOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge:${config.jei_version}")
-    }
+//    if (hasConfig("jei_version") && !config.jei_version.isEmpty()) {
+//        compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-common-api:${config.jei_version}")
+//        compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")
+//        runtimeOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge:${config.jei_version}")
+//    }
 
     if (hasConfig("geckolib_version") && !config.geckolib_version.isEmpty()) {
         implementation fg.deobf("software.bernie.geckolib:geckolib-neoforge-${config.mc_version}:${config.geckolib_version}")
         implementation("com.eliotlash.mclib:mclib:20")
     }
+//
+//    if (hasConfig("curios_version") && !config.curios_version.isEmpty()) {
+//        implementation fg.deobf("top.theillusivec4.curios:curios-forge:${config.curios_version}")
+//        runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.curios_version}")
+//    }
+//
+//    if (hasConfig("playeranimator_version") && !config.playeranimator_version.isEmpty()) {
+//        implementation fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${config.playeranimator_version}")
+//        runtimeOnly fg.deobf("io.github.kosmx.bendy-lib:bendy-lib-forge:${config.bendylib_version}")
+//    }
+//
+//    if (hasConfig("enable_annotation") && Boolean.parseBoolean(config.enable_annotation)) {
+//        annotationProcessor("org.spongepowered:mixins:0.8.5:processor")
+//    }
+//
+//    // Mixin extra
+//    if (hasConfig("mixin_extras_version") && !config.mixin_extras_version.isEmpty()) {
+//        implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${config.mixin_extras_version}")
+//        jarJar(group: 'com.github.llamalad7.mixinextras', name: 'mixinextras-forge', version: "[${config.mixin_extras_version},)")
+//    }
+//
+//    // Libraries jarjar.
+//    if (hasConfig("cibrary_version") && !config.cibrary_version.isEmpty()) {
+//        implementation fg.deobf("org.crychicteam.cibrary:cibrary:${config.cibrary_version}")
+//        jarJar(group: 'org.crychicteam', name: 'cibrary', version: "[${config.cibrary_version},)")
+//    }
+//
+//    if (hasConfig("l2damagetracker_version") && !config.l2damagetracker_version.isEmpty()) {
+//        implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:${config.l2damagetracker_version}")
+//        jarJar(group: 'dev.xkmc', name: 'l2damagetracker', version: "[${config.l2damagetracker_version},)")
+//    }
+//
+//    if (hasConfig("l2serial_version") && !config.l2serial_version.isEmpty()) {
+//        implementation fg.deobf("dev.xkmc.l2serial:l2serial:${config.l2serial_version}")
+//        jarJar(group: 'dev.xkmc', name: 'l2serial', version: "[${config.l2serial_version},)")
+//    }
 
-    if (hasConfig("curios_version") && !config.curios_version.isEmpty()) {
-        implementation fg.deobf("top.theillusivec4.curios:curios-forge:${config.curios_version}")
-        runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.curios_version}")
-    }
-
-    if (hasConfig("playeranimator_version") && !config.playeranimator_version.isEmpty()) {
-        implementation fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${config.playeranimator_version}")
-        runtimeOnly fg.deobf("io.github.kosmx.bendy-lib:bendy-lib-forge:${config.bendylib_version}")
-    }
-
-    if (hasConfig("enable_annotation") && Boolean.parseBoolean(config.enable_annotation)) {
-        annotationProcessor("org.spongepowered:mixin:0.8.7:processor")
-    }
-
-    // Mixin extra
-    if (hasConfig("mixin_extras_version") && !config.mixin_extras_version.isEmpty()) {
-        implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${config.mixin_extras_version}")
-        jarJar(group: 'com.github.llamalad7.mixinextras', name: 'mixinextras-forge', version: "[${config.mixin_extras_version},)")
-    }
-
-    // Libraries jarjar.
-    if (hasConfig("cibrary_version") && !config.cibrary_version.isEmpty()) {
-        implementation fg.deobf("org.crychicteam.cibrary:cibrary:${config.cibrary_version}")
-        jarJar(group: 'org.crychicteam', name: 'cibrary', version: "[${config.cibrary_version},)")
-    }
-
-    if (hasConfig("l2damagetracker_version") && !config.l2damagetracker_version.isEmpty()) {
-        implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:${config.l2damagetracker_version}")
-        jarJar(group: 'dev.xkmc', name: 'l2damagetracker', version: "[${config.l2damagetracker_version},)")
-    }
-
-    if (hasConfig("l2serial_version") && !config.l2serial_version.isEmpty()) {
-        implementation fg.deobf("dev.xkmc.l2serial:l2serial:${config.l2serial_version}")
-        jarJar(group: 'dev.xkmc', name: 'l2serial', version: "[${config.l2serial_version},)")
-    }
+    implementation fg.deobf("curse.maven:ames-mobs-renew-1080087:5773065")
+    implementation fg.deobf("curse.maven:pehkui-319596:5393101")
 
     def libraries = new File(file("libraries"), "${config.mc_version}")
     if (!libraries.isDirectory()) libraries.mkdirs()
@@ -324,13 +334,13 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : config.mod_id,
-                "Specification-Vendor"    : "Zeitheron",
+                "Specification-Vendor"    : "crychicteam",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : archiveVersion,
                 "Implementation-Vendor"   : config.mod_authors,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : "mixins.${config.mod_id}.json"
+                "MixinConfigs": "mixins.${config.mod_id}.json",
         ])
     }
     archiveClassifier.set('slim')
@@ -341,13 +351,13 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
     manifest {
         attributes(["Specification-Title"     : config.mod_id,
-                    "Specification-Vendor"    : "Zeitheron",
+                    "Specification-Vendor"    : "crychicteam",
                     "Specification-Version"   : "1",
                     "Implementation-Title"    : project.name,
                     "Implementation-Version"  : archiveVersion,
                     "Implementation-Vendor"   : config.mod_authors,
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                    "MixinConfigs"            : "mixins.${config.mod_id}.json"
+                    "MixinConfigs": "mixins.${config.mod_id}.json",
         ])
     }
 }
