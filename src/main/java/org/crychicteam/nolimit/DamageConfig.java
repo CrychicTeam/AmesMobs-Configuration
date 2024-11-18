@@ -8,6 +8,7 @@ public class DamageConfig {
 
     public static final ForgeConfigSpec.BooleanValue ENABLE_DAMAGE_LIMIT;
     public static final ForgeConfigSpec.DoubleValue DAMAGE_LIMIT_VALUE;
+    public static final ForgeConfigSpec.DoubleValue PHASE_CHANGE_PERCENT;
 
     static {
         BUILDER.push("damage_settings");
@@ -19,6 +20,12 @@ public class DamageConfig {
         DAMAGE_LIMIT_VALUE = BUILDER
                 .comment("Maximum damage value")
                 .defineInRange("damageLimitValue", 100.0D, 0.0D, Double.MAX_VALUE);
+
+        PHASE_CHANGE_PERCENT = BUILDER
+                .comment("EnderKings phase change percentage")
+                .comment("The percentage of health that will make EnderKings to change phase")
+                .comment("The logic is EnderKing change phase when the health is lower than this value.")
+                .defineInRange("phaseChangePercentage", 0.5D, 0.1D, 1.0D);
 
         BUILDER.pop();
         SPEC = BUILDER.build();
