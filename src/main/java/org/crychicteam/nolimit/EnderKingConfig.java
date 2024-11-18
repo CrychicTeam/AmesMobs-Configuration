@@ -2,7 +2,7 @@ package org.crychicteam.nolimit;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class DamageConfig {
+public class EnderKingConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
@@ -11,7 +11,7 @@ public class DamageConfig {
     public static final ForgeConfigSpec.DoubleValue PHASE_CHANGE_PERCENT;
 
     static {
-        BUILDER.push("damage_settings");
+        BUILDER.push("EnderKingSettings");
 
         ENABLE_DAMAGE_LIMIT = BUILDER
                 .comment("Enable damage limit")
@@ -19,6 +19,7 @@ public class DamageConfig {
 
         DAMAGE_LIMIT_VALUE = BUILDER
                 .comment("Maximum damage value")
+                .comment("Need enableDamageLimit to be set as false")
                 .defineInRange("damageLimitValue", 100.0D, 0.0D, Double.MAX_VALUE);
 
         PHASE_CHANGE_PERCENT = BUILDER

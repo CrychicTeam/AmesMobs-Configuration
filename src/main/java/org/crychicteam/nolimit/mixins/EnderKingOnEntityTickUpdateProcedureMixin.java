@@ -4,7 +4,7 @@ import net.mcreator.animatedmobsmod.procedures.EnderKingOnEntityTickUpdateProced
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LevelAccessor;
-import org.crychicteam.nolimit.DamageConfig;
+import org.crychicteam.nolimit.EnderKingConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
@@ -18,7 +18,7 @@ public class EnderKingOnEntityTickUpdateProcedureMixin {
     )
     private static float noLimit$modifyHealthThreshold(float constant, LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity instanceof LivingEntity living) {
-            return living.getMaxHealth() * DamageConfig.PHASE_CHANGE_PERCENT.get().floatValue();
+            return living.getMaxHealth() * EnderKingConfig.PHASE_CHANGE_PERCENT.get().floatValue();
         }
         return constant;
     }

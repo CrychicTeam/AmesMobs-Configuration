@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 @Mod(NoLimit.MOD_ID)
 public class NoLimit {
-	public static final String MOD_ID = "nolimit";
+	public static final String MOD_ID = "amemobsettings";
 	public static ResourceLocation id(String path)
 	{
 		return new ResourceLocation(MOD_ID, path);
@@ -17,6 +17,11 @@ public class NoLimit {
 	public static Logger LOGGER = Logger.getLogger(NoLimit.MOD_ID);
 
 	public NoLimit () {
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DamageConfig.SPEC, "enderking-limit.toml");
+		configRegistry();
+	}
+
+	public void configRegistry() {
+		var mod = ModLoadingContext.get();
+		mod.registerConfig(ModConfig.Type.COMMON, EnderKingConfig.SPEC, "enderking-settings.toml");
 	}
 }
