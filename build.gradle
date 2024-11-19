@@ -34,7 +34,7 @@ configFile.withReader {
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse(prop)
     project.ext.hasConfig = { key ->
-        return config.isSet(key);
+        return config.isSet(key)
     }
 }
 

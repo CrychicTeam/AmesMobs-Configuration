@@ -1,6 +1,6 @@
 # Mod Info
 enable_annotation=true
-mod_version= 0.1.10
+mod_version= 0.1.11
 formal_version = true
 
 # Mod dependencies (jei is not a requirement, but HammerLib is)
@@ -20,8 +20,8 @@ geckolib_version = 4.4.9
 # mixin_extras_version=0.2.0-beta.8
 
 # Persistent mod info
-mod_id=nolimit
-archive_name=NoLimitDamage-EnderKing
+mod_id=amemobsettings
+archive_name=AmeMobs'Settings
 mod_name=No Limit
 mod_description=To remove damage limit.\nof enderking entity.
 mod_authors=CrychicTeam
