@@ -1,4 +1,4 @@
-package org.crychicteam.nolimit;
+package org.crychicteam.amemobsettings;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModLoadingContext;

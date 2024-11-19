@@ -1,4 +1,4 @@
-package org.crychicteam.nolimit;
+package org.crychicteam.amemobsettings;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -19,7 +19,7 @@ public class EnderKingConfig {
 
         DAMAGE_LIMIT_VALUE = BUILDER
                 .comment("Maximum damage value")
-                .comment("Need enableDamageLimit to be set as false")
+                .comment("Need enableDamageLimit to be set as true")
                 .defineInRange("damageLimitValue", 100.0D, 0.0D, Double.MAX_VALUE);
 
         PHASE_CHANGE_PERCENT = BUILDER

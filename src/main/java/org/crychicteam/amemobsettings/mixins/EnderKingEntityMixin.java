@@ -1,7 +1,7 @@
-package org.crychicteam.nolimit.mixins;
+package org.crychicteam.amemobsettings.mixins;
 
 import net.mcreator.animatedmobsmod.entity.EnderKingEntity;
-import org.crychicteam.nolimit.EnderKingConfig;
+import org.crychicteam.amemobsettings.EnderKingConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -15,7 +15,7 @@ public class EnderKingEntityMixin {
                     target = "Ljava/lang/Math;min(FF)F"
             )
     )
-    private float noLimit$modifyDamageLimit(float amount, float limit) {
+    private float ameMobsConfiguration$min(float amount, float limit) {
         if (!EnderKingConfig.ENABLE_DAMAGE_LIMIT.get()) {
             return amount;
         }
